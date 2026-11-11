@@ -1,0 +1,7 @@
+file: _archive/_about.txt
+template: REI
+title: 処理が済んだ資料の置き場
+description: _inbox で処理した元の資料を保管する場所の説明
+caution: 中身は git に入れない
+
+処理が済んだ元の資料。YYYYMMDD-TASK-N_件名 のフォルダに入れる。中のファイル名は変えない。中身は直さない・消さない（docs/howto/inbox.md）。

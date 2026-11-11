@@ -1,0 +1,26 @@
+# file: .gitignore
+# template: REI
+# title: git に入れないもの
+# description: 記録のうち共有しないもの（hook の記録・機械ごとの設定・資料の中身）を git から外す
+#
+# hookの記録（共有しない書類）
+.claude/hook-executed.log
+.claude/guard-status
+.claude/stop-requested
+.claude/rei-state
+.claude/first-time-guide.*
+# 機械ごとの設定・自分だけのメモ
+.claude/settings.local.json
+*.local.md
+.rei/local.cfg
+.rei/reports/
+# 秘密
+.env
+.env.*
+# 個人情報のパターン表（リポジトリの外に置くもの。誤って写したときの二重の防ぎ）
+pii_patterns.txt
+# 受け取った資料（他人の資料・個人情報を含みうる。docs/howto/inbox.md）
+_inbox/*
+!_inbox/_about.txt
+_archive/*
+!_archive/_about.txt

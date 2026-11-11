@@ -1,0 +1,7 @@
+file: _inbox/_about.txt
+template: REI
+title: 受け取った資料の置き場
+description: 受け取ったままの資料を置く場所の説明
+caution: パスワード・キーが書かれた資料は置かない
+
+受け取ったままの資料（メール・文書・添付・渡されたファイル）を置く。処理したら _archive に移す。このファイルしか無ければ、全部処理済み。パスワード・キーが書かれた資料は置かない（docs/howto/inbox.md）。

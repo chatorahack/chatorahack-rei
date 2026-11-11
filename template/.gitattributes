@@ -1,0 +1,10 @@
+# file: .gitattributes
+# template: REI
+# title: 行末の決まり
+# description: スクリプトと記録の行末を LF に保つ（Windows で CRLF になると bash で動かない）
+#
+# スクリプトの改行は LF のまま（Windows で CRLF になると bash で動かない）
+* text=auto
+*.sh text eol=lf
+.githooks/* text eol=lf
+.rei/* text eol=lf

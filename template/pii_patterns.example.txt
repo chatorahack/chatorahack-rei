@@ -1,0 +1,51 @@
+# file: pii_patterns.example.txt
+# template: REI
+# title: 個人情報のパターン表の見本
+# description: 個人情報の点検で使う表の書き方の見本
+# caution: このファイルには値を入れない。本物の表はリポジトリの外に置く
+#
+# 個人情報のパターン表の見本（.env.example と同じ扱い。このファイルには値を入れない）
+#
+# 使い方：このファイルを ~/.config/rei/pii_patterns.txt にコピーし、値はそちらにだけ書く（リポジトリの外）。
+#   Windowsでは C:\Users\<アカウント名>\.config\rei\pii_patterns.txt。詳しくは docs/howto/pii-check.md
+#
+# 書き方：1行に「元の文字列==>伏せ字」。検出に使うのは「==>」より左だけ（scripts/check-pii.sh）
+#   - 大文字と小文字は区別しない。表記の揺れ（スペースの有無・全角と半角）は別の行にする
+#   - ほかの語と重なる短い語は登録しない（フルネーム・ローマ字など、重ならない形にする）
+#   - 同じ語を2つの伏せ字に割り当てない（後で自動置き換えをするとき、どちらにするか決まらなくなる）
+#   - 長いもの（フルネーム）を短いもの（姓だけ）より上に書く（git filter-repo --replace-text 等で置き換えるときの定番）
+#   - # で始まる行は無視される。下の例はコメントのまま残し、値は新しい行で書く
+#     （例の穴をコメントにせず残すと、穴の文字列そのものが検索語になって誤検出する）
+#
+# 伏せ字の一覧（種類名は Microsoft Presidio に合わせ、無い種類だけ同じ形で足す）
+#   {{PERSON}}              氏名（姓と名の区別が付かない・不要なとき）  Presidio PERSON
+#   {{PERSON_FAMILY_NAME}}  姓                                          schema.org familyName
+#   {{PERSON_GIVEN_NAME}}   名                                          schema.org givenName
+#   {{EMAIL_ADDRESS}}       個人のメールアドレス                        Presidio EMAIL_ADDRESS
+#   {{OS_ACCOUNT}}          OSアカウント名（Windowsの8.3短縮形を含む）
+#   {{USER_HANDLE}}         本名と紐づくSNS・サービスのハンドル名
+#   {{ORGANIZATION}}        ほかの組織の名前・プロジェクトの名前（自分が公開で使っている名前は除く）
+#   ほかの種類が必要なら、まず Presidio の種類名（PHONE_NUMBER・LOCATION 等）を探す
+#
+# 以下の例の値（見本 太郎・mihon taro）はすべて架空のもの
+
+# ---- 氏名 ----
+# 例）見本 太郎==>{{PERSON}}
+# 例）mihon taro==>{{PERSON}}
+# 例）見本==>{{PERSON_FAMILY_NAME}}
+# 例）mihon==>{{PERSON_FAMILY_NAME}}
+# 例）太郎==>{{PERSON_GIVEN_NAME}}
+
+# ---- 個人のメールアドレス ----
+# 例）sample@example.com==>{{EMAIL_ADDRESS}}
+
+# ---- OSアカウント名 ----
+# 例）mihontaro==>{{OS_ACCOUNT}}
+# 例）MIHONT~1==>{{OS_ACCOUNT}}
+
+# ---- 本名と紐づくハンドル名 ----
+# 例）taro_mihon==>{{USER_HANDLE}}
+
+# ---- ほかの組織・プロジェクトの名前（自分が公開で使っている名前は入れない） ----
+# 例）株式会社サンプル==>{{ORGANIZATION}}
+# 例）sample-inc==>{{ORGANIZATION}}

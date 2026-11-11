@@ -1,0 +1,43 @@
+#!/bin/bash
+# file: .githooks/pre-commit
+# template: REI
+# title: コミット前の点検
+# description: コミットの前に、決定ファイルの書き換え・見えない制御文字・個人情報・受け取りの記録を確かめる
+#
+# pre-commit：コミットの最後の関門
+# Claude Code の hook は、Claude Code の中でしか効かない。人が直接コミットするとき、ほかの AI の道具で作業したときも
+# 止められるように、git のコミットそのものに関門を置く。
+#   1. 決定ファイル（decisions/・docs/adr/）の既存のものが書き換え・削除・改名されていたら止める（Forward-only）
+#   2. コミットに足す行に、見えない制御文字が入っていたら止める
+#   3. コミットに足す行に、個人を特定できる語（リポジトリの外の表に書いたもの）が入っていたら止める
+#   4. 受け取りの記録（.rei/received.cfg）が崩れている、AGENTS.md に手元のパスがある、.rei/local.cfg を入れた、なら止める（v0.3.0-beta.28）
+#
+# 使い始めに1回だけ実行する：git config core.hooksPath .githooks
+# 限界（正直に）：git commit --no-verify で回避できる。強制ではなく、最後の防波堤の1つ。
+set -u
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+if [ -f scripts/check-forward-only.sh ]; then
+  if ! bash scripts/check-forward-only.sh; then
+    echo "" >&2
+    echo "[REI pre-commit] decisions/・docs/adr/ の既存のファイルが書き換えられています。" >&2
+    echo "新しい番号のファイルで上書きを宣言してください。回避する場合は git commit --no-verify" >&2
+    exit 1
+  fi
+fi
+
+# 見えない制御文字（プログラムの文字列で書いたパスの \a・\r・\v が化けたもの等）が混ざっていたら止める
+if [ -f scripts/check-control-chars.sh ]; then
+  bash scripts/check-control-chars.sh || exit 1
+fi
+
+# 表が無いときは注意だけ出して止めない（作り方は docs/howto/pii-check.md）
+if [ -f scripts/check-pii.sh ]; then
+  bash scripts/check-pii.sh || exit 1
+fi
+
+# 受け取りの記録の書式と、手元のパスの混入（docs/howto/upgrade.md「受け取りの記録」）
+if [ -f scripts/check-received.sh ]; then
+  bash scripts/check-received.sh || exit 1
+fi
+exit 0
