@@ -39,9 +39,9 @@
 # ---- 個人のメールアドレス ----
 # 例）sample@example.com==>{{EMAIL_ADDRESS}}
 
-# ---- OSアカウント名 ----
-# 例）mihontaro==>{{OS_ACCOUNT}}
-# 例）MIHONT~1==>{{OS_ACCOUNT}}
+# ---- OSアカウント名（本名から付けていることが多い。短い名前〔8.3 形式〕も別の行で） ----
+# 例）longaccount==>{{OS_ACCOUNT}}
+# 例）LONGAC~1==>{{OS_ACCOUNT}}
 
 # ---- 本名と紐づくハンドル名 ----
 # 例）taro_mihon==>{{USER_HANDLE}}
