@@ -43,8 +43,14 @@ case "$(cfg "$ST" state.copy || echo none)" in
   set)
     if [ -n "$L" ]; then echo "- 新しい版：$L がある（間の ${N:-?} 版のうち必須 ${R:-?}）。必須の版は飛ばさない"
     else echo "- 新しい版：無い（手元の写しと比べた。写しを新しくするのは人：git -C <写し> pull）"; fi ;;
-  missing) echo "- 新しい版：見ていない（.rei/local.cfg の写しのフォルダに CHANGELOG.md が無い）" ;;
-  unset) echo "- 新しい版：見ていない（写しのフォルダが未設定。REI を clone したフォルダを書く：git config --file .rei/local.cfg copy.path <フォルダ>）" ;;
+  missing) echo "- 新しい版：見ていない（.rei/local.cfg の写しのフォルダに CHANGELOG.md が無い。パスが合っているかを確かめて書き直す）" ;;
+  unset)
+    # 控えは起動のときに書く。起動の後に写しのフォルダを書いたときは、控えは古いまま（v0.3.0-beta.46）
+    if [ -n "$(cfg .rei/local.cfg copy.path || true)" ]; then
+      echo "- 新しい版：まだ比べていない（写しのフォルダは書いてある。次に Claude Code を起動したときに比べる）"
+    else
+      echo "- 新しい版：見ていない（写しのフォルダが未設定。REI を clone したフォルダを書く：git config --file .rei/local.cfg copy.path <フォルダ>）"
+    fi ;;
   *) echo "- 新しい版：まだ比べていない（Claude Code を起動し直すと比べる）" ;;
 esac
 fi
