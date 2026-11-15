@@ -49,7 +49,7 @@ case "$(cfg "$ST" state.copy || echo none)" in
     if [ -n "$(cfg .rei/local.cfg copy.path || true)" ]; then
       echo "- 新しい版：まだ比べていない（写しのフォルダは書いてある。次に Claude Code を起動したときに比べる）"
     else
-      echo "- 新しい版：見ていない（写しのフォルダが未設定。REI を clone したフォルダを書く：git config --file .rei/local.cfg copy.path <フォルダ>）"
+      echo "- 新しい版：見ていない（写しのフォルダが未設定。REI を clone したフォルダを書く：（Windows は Git Bash で）git config --file .rei/local.cfg copy.path '<フォルダ>'。パスは ' で囲む）"
     fi ;;
   *) echo "- 新しい版：まだ比べていない（Claude Code を起動し直すと比べる）" ;;
 esac

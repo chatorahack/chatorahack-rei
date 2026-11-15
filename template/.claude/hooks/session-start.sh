@@ -121,7 +121,7 @@ CHANGES
   elif ! grep -q 'version-check=off' "$LOG" 2>/dev/null; then
     # 写しが書かれていないときは、一度だけ知らせる（毎回は出さない。記録に印を残す）
     say "[REI] 新しい版があるかは見ていません（REI の写しのフォルダが未設定。docs/howto/upgrade.md「新しい版の知らせ」）"
-    tell "[REI] 新しい版があるかは見ていません。REI を clone したフォルダを書くと、起動のときに比べます：git config --file .rei/local.cfg copy.path <フォルダ>（この知らせは一度だけ）"
+    tell "[REI] 新しい版があるかは見ていません。REI を clone したフォルダを書くと、起動のときに比べます：（Windows は Git Bash で）git config --file .rei/local.cfg copy.path '<フォルダ>'（パスは ' で囲む。この知らせは一度だけ）"
     printf '%s version-check=off\n' "$(date -Iseconds)" >> "$LOG" 2>/dev/null || true
   fi
 fi

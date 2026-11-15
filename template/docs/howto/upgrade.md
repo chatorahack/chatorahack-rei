@@ -127,7 +127,7 @@ git config --file .rei/received.cfg 'skip.docs/glossary.md.reason' '辞書はプ
 
 起動のとき（`session-start.sh`）に、REI の写し（REI を clone したフォルダ）の `CHANGELOG.md` の一番上の版と、受け取りの記録の版を比べ、新しければ知らせる。間の版の重さ（必須・推奨・任意）は、写しの `changes.cfg` から数える。
 
-- 写しのフォルダは `.rei/local.cfg`（機械ごとの設定。git に入れない）に、コマンドで書く：
+- 写しのフォルダは `.rei/local.cfg`（機械ごとの設定。git に入れない）に、コマンドで書く。Windows では Git Bash で打ち、パスは `'` で囲む（Windows のパスの `\` が消えないように。コマンドプロンプトでは `'` が値に入ってしまう）。Git Bash は Git for Windows と一緒に入るターミナルで、スタートメニューから開き、`cd` で自分のプロジェクトのフォルダに移ってから打つ：
 
   ```sh
   git config --file .rei/local.cfg copy.path 'C:\path\to\rei'
