@@ -11,6 +11,32 @@ description: REI の版ごとの変更。一番上の日付付きの見出しが
 最初の公開は 0.3.0-beta.38 です。それより前の版は公開せずに作っていました。下の beta.37 までの記録は経緯として残していますが、タグも配布も無く、取り出せません。
 版は、このファイルの一番上の日付付きの見出しが正本です。公開した版にはタグ（`v0.3.0-beta.N`）を付けます。
 
+## [0.3.0-beta.51] - 2026-11-15
+
+変更は1つ（一因子：便利な機能を Claude Code のプラグインとして出し入れする一覧の欄と、一覧にあるのに入っていないプラグインを知らせる見張りを入れる）。機能 `plugins`（新しい名前）、重さ 任意。
+
+### Added
+
+- `template/.claude/settings.json`：プラグインの一覧の欄 `extraKnownMarketplaces`（入手先）・`enabledPlugins`（使うプラグイン）を、空のまま足した。Claude Code の公式の欄で、Node の `package.json` の依存の一覧に当たる。プラグインの中身は git に入らない
+- `template/.claude/hooks/plugin-check.sh`（SessionStart、settings.json に1エントリ）：`enabledPlugins` に true で書いたプラグインのうち、`claude plugin list --json` に無いもの（この PC に入っていないもの）の名前を、起動のときに人の画面と AI に知らせる。一覧が空なら何もしない（claude も呼ばない）。`claude plugin list` が動かない・JSON の配列でない出力のときは「確かめられなかった」と知らせる。登録に時間の上限（`timeout` 15秒）を付けた。会話の要約（source=compact）では知らせ直さない。プラグインの場所は出力にも記録にも書かない
+- `template/docs/howto/plugins.md`：足す・ほかの人と使う・外す・入っていないときの手順（公式の `claude plugin marketplace add`・`claude plugin install … --scope project`・`claude plugin uninstall … --scope project`）。何をプラグインにしないか（止める仕組み・決定の書き換えの確認・外への書き込みの確認・コミット前の点検）
+- `template/docs/naming.md`「REI の機能の名前」に `plugins`、`template/AGENTS.md` 13. の手順の一覧に「プラグインで機能を足す・外す」
+
+### Changed
+
+- `README.md`：図の下の説明を「便利な機能を足したいときは、Claude Code のプラグインを使える（一覧に書き、各 PC で入れる。REI 自身のプラグインはまだ無い）」に直し、表に起動のときの見張りの行を足した
+
+### 上げ方
+
+- 任意の版。`settings.json` は雛形の持ち物なので、手を加えていなければ入れ替わり、加えていれば3方向で当たる（足したのは2つの欄と SessionStart の1エントリ）。`plugin-check.sh`・`plugins.md` は新しいファイル
+
+### 限界
+
+- REI 自身のプラグインは、まだ1つも無い（一覧は空）。最初のプラグインに何を入れるか、どこを入手先にするか（公開のリポジトリをマーケットプレイスにするか）は、次の版で決める
+- 見張りが見るのは `.claude/settings.json` だけ。入っているかだけを見て、読み込めたかは見ない（`/plugin` の Errors タブ）
+- 一覧が空でないときは、起動のたびに `claude plugin list` を1回呼ぶ（手元で約1秒）
+- マーケットプレイスから入れる・外すは、まだ手元で試していない（公開のあと、公開のリポジトリで試す）
+
 ## [0.3.0-beta.50] - 2026-11-15
 
 変更は1つ（一因子：辞書に、問い・目標・依頼・確かめの型を、場面で選べる形で足す）。機能 `docs`、重さ 任意。

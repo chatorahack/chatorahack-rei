@@ -110,6 +110,7 @@ REI の雛形を機能に分けて呼ぶときの名前。REI の変更の索引
 | `first-time-guide` | 初めての分野の相談で、先に地図を見せる hook |
 | `session-notices` | 起動のときの知らせ（`session-start.sh`）、依頼の始まりと終わりの記録（`turn-log.sh`）、状態の窓口（`/rei`＝`.claude/skills/rei/`・`scripts/rei-status.sh`、ステータスライン＝`.claude/statusline.sh`） |
 | `reviewer` | 審査役（`.claude/agents/reviewer.md`） |
+| `plugins` | プラグインの一覧の欄（`.claude/settings.json` の `enabledPlugins`・`extraKnownMarketplaces`）と見張り（`.claude/hooks/plugin-check.sh`）、手順（`docs/howto/plugins.md`）。見張りは雛形に残し、プラグインにしない |
 | `commit-checks` | コミット前の点検（`.githooks/`・`scripts/check-*.sh`） |
 | `upgrade` | 版上げ（`scripts/upgrade-plan.sh`・`scripts/upgrade-try.sh`・`docs/howto/upgrade.md`・`.rei/`） |
 | `docs` | そのほかの文書（`docs/`） |
