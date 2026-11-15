@@ -1,4 +1,4 @@
-# REI 雛形 v0.3.0-beta.49
+# REI 雛形 v0.3.0-beta.50
 
 [English](README.en.md) | [日本語](README.md)
 
