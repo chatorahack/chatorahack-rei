@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "rei-hello",
-      "description": "世界のあいさつと、ただ励ますだけの言葉を返す見本（/rei-hello:hello・/rei-hello:cheer）。何も読まず、何も書かず、外にも送らない",
+      "description": "世界のあいさつと、ただ励ますだけの言葉を返す見本（/rei-hello:hello・/rei-hello:cheer）。スキルだけで、ファイルの読み書き・コマンドの実行・外への送信を指示しない",
       "source": "./plugins/rei-hello",
       "category": "sample"
     }
