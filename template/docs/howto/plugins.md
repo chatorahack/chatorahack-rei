@@ -12,6 +12,10 @@ description: 便利な機能を Claude Code のプラグインとして、.claud
 - **一覧はどこか**：`.claude/settings.json` の `enabledPlugins`（使うプラグイン）と `extraKnownMarketplaces`（プラグインの入手先＝マーケットプレイス）。Node の `package.json` の依存の一覧に当たる。プラグインの中身はこのプロジェクトの外（Claude Code のプラグインの置き場）に入り、git には入らない
 - 仕組みは Claude Code のもの（公式 https://code.claude.com/docs/en/plugins/install 、https://code.claude.com/docs/en/plugins/loading ）。REI は一覧の欄と、下の見張りだけを持つ
 
+## 見本
+
+REI の公開のリポジトリに、いちばん小さな見本のプラグイン `rei-hello`（世界のあいさつと、ただ励ますだけの言葉を返す）と、その入手先 `rei-samples` がある（リポジトリの `plugins/rei-hello/README.md`）。何も読まず・書かず・外に送らないので、入れ方・外し方を試すのと、自分のプラグインを作るときに形を写すのに使う。作る前に、同じ用事の既存のプラグインを先に探す（`/plugin` の Discover）
+
 ## 何をプラグインにするか
 
 - **プラグインにしない**：止める仕組み（`stop-guard`）、決定の書き換えの確認（`decisions-guard`）、プロジェクトの外への書き込みの確認（`scope-guard`）、コミット前の点検（`commit-checks`）。外れても誰にも知らされないので、雛形のファイルとして残す

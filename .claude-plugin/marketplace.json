@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "rei-samples",
+  "description": "REI の見本のプラグイン。自分でプラグインを作るときの、いちばん小さな見本",
+  "owner": {
+    "name": "REI"
+  },
+  "plugins": [
+    {
+      "name": "rei-hello",
+      "description": "世界のあいさつと、ただ励ますだけの言葉を返す見本（/rei-hello:hello・/rei-hello:cheer）。何も読まず、何も書かず、外にも送らない",
+      "source": "./plugins/rei-hello",
+      "category": "sample"
+    }
+  ]
+}

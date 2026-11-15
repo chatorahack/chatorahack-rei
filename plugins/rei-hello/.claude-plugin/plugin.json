@@ -1,0 +1,9 @@
+{
+  "name": "rei-hello",
+  "version": "1.0.0",
+  "description": "世界のあいさつと、ただ励ますだけの言葉を返す見本。何も読まず、何も書かず、外にも送らない",
+  "author": {
+    "name": "REI"
+  },
+  "license": "MIT"
+}
